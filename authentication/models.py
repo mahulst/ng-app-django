@@ -36,8 +36,8 @@ class Account(AbstractBaseUser):
 
     email = models.EmailField(unique=True)
 
-    first_name = models.CharField(max_length=40)
-    last_name = models.CharField(max_length=40)
+    first_name = models.CharField(max_length=40, default='')
+    last_name = models.CharField(max_length=40, default='')
 
     user_type = models.IntegerField(choices=USER_TYPE_CHOICES, default=EMPLOYEE)
     is_admin = models.BooleanField(default=False)
