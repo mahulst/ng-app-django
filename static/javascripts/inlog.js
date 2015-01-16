@@ -5,7 +5,8 @@
     .module('inlog', [
       'inlog.routes',
       'inlog.authentication',
-      'inlog.config'
+      'inlog.config',
+      'inlog.layout'
     ]);
 
   angular
