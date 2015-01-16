@@ -10,7 +10,7 @@ from rest_framework.response import Response
 
 
 class LogOutView(views.APIView):
-    permission_classes = (permissions.IsAuthenticated)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, format=None):
         logout(request)
