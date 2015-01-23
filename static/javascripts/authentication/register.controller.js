@@ -26,7 +26,7 @@
     * @memberOf inlog.authentication.controllers.RegisterController
     */
     function register() {
-      Authentication.register(vm.email, vm.password, vm.username);
+      Authentication.register(vm.email, vm.password, vm.username, vm.userType);
     }
 
 

@@ -19,6 +19,9 @@
 
     vm.logout = logout;
 
+    vm.isAdmin = function () {
+      return Authentication.isAuthenticatedAsAdmin();
+    };
     /**
     * @name logout
     * @desc Log the user out

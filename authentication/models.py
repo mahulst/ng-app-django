@@ -58,3 +58,12 @@ class Account(AbstractBaseUser):
     def get_short_name(self):
         return self.first_name
 
+    @property
+    def is_staff(self):
+        return self.user_type == self.ADMIN
+
+    def has_perm(self, perm, obj=None):
+        return self.user_type == self.ADMIN
+
+    def has_module_perms(self, app_label):
+        return self.user_type == self.ADMIN

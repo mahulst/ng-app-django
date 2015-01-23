@@ -23,6 +23,7 @@
     var Authentication = {
       getAuthenticatedAccount: getAuthenticatedAccount,
       isAuthenticated: isAuthenticated,
+      isAuthenticatedAsAdmin: isAuthenticatedAsAdmin,
       login: login,
       logout: logout,
       register: register,
@@ -43,10 +44,11 @@
     * @returns {Promise}
     * @memberOf inlog.authentication.services.Authentication
     */
-    function register(email, password, username) {
+    function register(email, password, username, userType) {
       return $http.post('/api/v1/accounts/', {
         username: username,
         password: password,
+        user_type: userType,
         email: email
       });
     }
@@ -137,6 +139,16 @@
       return !!$cookies.authenticatedAccount;
     }
 
+     /**
+    * @name isAuthenticatedAsAdmin
+    * @desc Check if the current user is an admin
+    * @returns {boolean} True is user is an admin, else false.
+    * @memberOf inlog.authentication.services.Authentication
+    */
+    function isAuthenticatedAsAdmin() {
+      return JSON.parse($cookies.authenticatedAccount).user_type === 2;
+    }
+
     /**
     * @name setAuthenticatedAccount
     * @desc Stringify the account object and store it in a cookie
@@ -146,6 +158,7 @@
     */
     function setAuthenticatedAccount(account) {
       $cookies.authenticatedAccount = JSON.stringify(account);
+      debugger;
     }
 
     /**
