@@ -64,6 +64,12 @@ class AccountViewSet(viewsets.ModelViewSet):
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
 
+        if request.user.user_type != Account.ADMIN:
+            return Response({
+                'status': 'Authentication failure',
+                'message': 'Only admin users can create new accounts'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
         if serializer.is_valid():
             Account.objects.create_user(**serializer.validated_data)
             return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
