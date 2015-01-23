@@ -100,6 +100,12 @@ COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+# Django compressor settings
+# http://django-compressor.readthedocs.org/en/latest/settings/
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
